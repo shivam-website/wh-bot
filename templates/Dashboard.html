@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhatsApp Bot Panel</title>
+</head>
+<body>
+  <h1>💬 WhatsApp Bot Panel</h1>
+  <p>Status: <span id="status">Checking...</span></p>
+
+  <button onclick="startBot()">▶️ Start Bot</button>
+  <button onclick="stopBot()">⛔ Stop Bot</button>
+  <button onclick="location.href='/qr'">📱 View QR Code</button>
+
+  <script>
+    function startBot() {
+      fetch('/start-bot')
+        .then(res => res.text())
+        .then(txt => alert(txt));
+    }
+
+    function stopBot() {
+      fetch('/stop-bot')
+        .then(res => res.text())
+        .then(txt => alert(txt));
+    }
+
+    function checkStatus() {
+      fetch('/status')
+        .then(res => res.text())
+        .then(txt => document.getElementById('status').innerText = txt);
+    }
+
+    checkStatus();
+  </script>
+</body>
+</html>
